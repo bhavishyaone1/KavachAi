@@ -49,7 +49,7 @@ import ResultSummary from './components/ResultSummary';
 // Dashboard sub-components
 import OnboardingModal from './components/dashboard/OnboardingModal';
 
-const API_BASE = "http://127.0.0.1:8000/api";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000/api";
 const queryClient = new QueryClient();
 
 function KavachApp() {
