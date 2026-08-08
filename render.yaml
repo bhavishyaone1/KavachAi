@@ -19,9 +19,7 @@ services:
     rootDir: frontend
     buildCommand: npm install --legacy-peer-deps && npm run build
     staticPublishPath: ./dist
-    envVars:
-      - key: VITE_API_BASE
-        fromService:
-          type: web
-          name: kavach-backend
-          property: url
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
