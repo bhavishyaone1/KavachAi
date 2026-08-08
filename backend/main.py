@@ -6,16 +6,36 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
 
-# Import models
-from backend.models.text_detector import detector as text_detector
-from backend.models.audio_detector import detector as audio_detector
-from backend.models.url_detector import detector as url_detector
-from backend.models.video_detector import detector as visual_detector
-from backend.models.claim_verifier import claim_verifier
-from backend.models.ocr_qr_detector import detector as ocr_qr_detector
-from backend.models.fusion_risk import fusion_layer
-from backend.utils.document_processor import document_processor
-from backend.models.lipsync_detector import detector as lipsync_detector
+import sys
+
+# Ensure both project root and backend folder are in Python path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+for p in [current_dir, parent_dir]:
+    if p not in sys.path:
+        sys.path.insert(0, p)
+
+# Import models with fallback for both root and local directory execution
+try:
+    from backend.models.text_detector import detector as text_detector
+    from backend.models.audio_detector import detector as audio_detector
+    from backend.models.url_detector import detector as url_detector
+    from backend.models.video_detector import detector as visual_detector
+    from backend.models.claim_verifier import claim_verifier
+    from backend.models.ocr_qr_detector import detector as ocr_qr_detector
+    from backend.models.fusion_risk import fusion_layer
+    from backend.utils.document_processor import document_processor
+    from backend.models.lipsync_detector import detector as lipsync_detector
+except ImportError:
+    from models.text_detector import detector as text_detector
+    from models.audio_detector import detector as audio_detector
+    from models.url_detector import detector as url_detector
+    from models.video_detector import detector as visual_detector
+    from models.claim_verifier import claim_verifier
+    from models.ocr_qr_detector import detector as ocr_qr_detector
+    from models.fusion_risk import fusion_layer
+    from utils.document_processor import document_processor
+    from models.lipsync_detector import detector as lipsync_detector
 
 app = FastAPI(
     title="Kavach AI Fraud Intelligence Platform",

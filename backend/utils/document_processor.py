@@ -48,7 +48,10 @@ class DocumentProcessor:
                             f_img.write(image_bytes)
                             
                         try:
-                            from backend.models.video_detector import detector as visual_detector
+                            try:
+                                from backend.models.video_detector import detector as visual_detector
+                            except ImportError:
+                                from models.video_detector import detector as visual_detector
                             ela_res = visual_detector.perform_ela(temp_img_path)
                             if ela_res["score"] > 0.45:
                                 flags.append("embedded_image_tampered")

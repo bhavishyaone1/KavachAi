@@ -5,7 +5,10 @@ import socket
 from urllib.parse import urlparse
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
-from backend.data.url_dataset import get_url_training_data
+try:
+    from backend.data.url_dataset import get_url_training_data
+except ImportError:
+    from data.url_dataset import get_url_training_data
 
 MODEL_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(MODEL_DIR, "cached_url_model.joblib")

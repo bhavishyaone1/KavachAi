@@ -4,7 +4,10 @@ import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_extraction import text as sklearn_text
-from backend.data.scam_dataset import get_training_data
+try:
+    from backend.data.scam_dataset import get_training_data
+except ImportError:
+    from data.scam_dataset import get_training_data
 
 MODEL_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(MODEL_DIR, "cached_text_model.joblib")
