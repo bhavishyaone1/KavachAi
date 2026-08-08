@@ -307,6 +307,15 @@ async def detect_fuse(
 frontend_dist = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "frontend", "dist")
 if os.path.exists(frontend_dist):
     from fastapi.staticfiles import StaticFiles
+    from fastapi.responses import FileResponse, JSONResponse
+
+    @app.exception_handler(404)
+    async def custom_404_handler(request, exc):
+        index_path = os.path.join(frontend_dist, "index.html")
+        if os.path.exists(index_path) and not request.url.path.startswith("/api"):
+            return FileResponse(index_path)
+        return JSONResponse(status_code=404, content={"detail": "Not Found"})
+
     app.mount("/", StaticFiles(directory=frontend_dist, html=True), name="static")
 
 if __name__ == "__main__":
