@@ -1,0 +1,27 @@
+services:
+  # 1. Python FastAPI Backend Service
+  - type: web
+    name: kavach-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.0
+      - key: ALLOWED_ORIGINS
+        value: "*"
+
+  # 2. React Vite Frontend Static Site
+  - type: web
+    name: kavach-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install --legacy-peer-deps && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_BASE
+        fromService:
+          type: web
+          name: kavach-backend
+          property: url
