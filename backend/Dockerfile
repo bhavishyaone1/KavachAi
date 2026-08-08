@@ -1,10 +1,11 @@
 FROM python:3.12-slim
 
-# Install core OS dependencies for OpenCV and sound signal processing
+# Install core OS dependencies for OpenCV, ffmpeg, and sound signal processing
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
-    libgl1-mesa-glx \
+    libgl1 \
     libglib2.0-0 \
+    ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
