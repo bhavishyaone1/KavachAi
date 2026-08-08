@@ -49,7 +49,7 @@ import ResultSummary from './components/ResultSummary';
 // Dashboard sub-components
 import OnboardingModal from './components/dashboard/OnboardingModal';
 
-const API_BASE = import.meta.env.VITE_API_BASE || (typeof window !== 'undefined' && window.location.port === "5173" ? "http://127.0.0.1:8000/api" : "/api");
+const API_BASE = import.meta.env.VITE_API_BASE || (typeof window !== 'undefined' && window.location.port === "5173" ? "http://127.0.0.1:8000/api" : "https://kavach-ai-htal.onrender.com/api");
 const queryClient = new QueryClient();
 
 function KavachApp() {
