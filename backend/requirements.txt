@@ -7,3 +7,5 @@ pillow>=9.0.0
 python-multipart>=0.0.6
 requests>=2.28.0
 nltk>=3.7
+PyMuPDF>=1.22.0
+opencv-python-headless>=4.7.0.72

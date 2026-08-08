@@ -1,6 +1,10 @@
 import os
 import re
-import fitz  # PyMuPDF
+try:
+    import fitz  # PyMuPDF
+except ImportError:
+    fitz = None
+
 import email
 from email import policy
 
@@ -18,6 +22,23 @@ class DocumentProcessor:
         text = ""
         links = []
         metadata = {}
+        flags = []
+
+        if fitz is None:
+            try:
+                with open(file_path, "r", errors="ignore") as f:
+                    text = f.read()
+            except Exception:
+                text = ""
+            return {
+                "text": text,
+                "links": [],
+                "metadata": {},
+                "flags": [],
+                "phones": list(set(PHONE_REGEX.findall(text))),
+                "emails": list(set(EMAIL_REGEX.findall(text))),
+                "upis": list(set(UPI_REGEX.findall(text)))
+            }
         flags = []
         try:
             doc = fitz.open(file_path)
