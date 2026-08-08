@@ -1,0 +1,71 @@
+# Python compiled files & caches
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+.venv/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+.eggs/
+.mypy_cache/
+.pytest_cache/
+.tox/
+
+# Node.js dependencies & production builds
+node_modules/
+dist-ssr/
+*.local
+.eslintcache
+frontend/dist/
+frontend/node_modules/
+
+# Serialized Machine Learning models
+backend/models/*.joblib
+
+# Forensic Temporary Files & Assets
+backend/temp_uploads/*
+!backend/temp_uploads/.gitkeep
+*_resaved.jpg
+*_ela.jpg
+*_temp.jpg
+*_extracted.wav
+*_sim_resaved.jpg
+
+# IDEs and Text Editors configuration
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+.project
+.pydevproject
+.settings/
+
+# Operating System files
+Thumbs.db
+Ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.Spotlight-V100
+.Trashes
+.directory
